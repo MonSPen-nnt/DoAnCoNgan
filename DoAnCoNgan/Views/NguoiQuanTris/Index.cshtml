@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.NguoiQuanTri>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenNguoiQuanTri)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChucVu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaiKhoan.MatKhau)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenNguoiQuanTri)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChucVu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TaiKhoan.MatKhau)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaNguoiQuanTri }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaNguoiQuanTri }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaNguoiQuanTri })
+        </td>
+    </tr>
+}
+
+</table>

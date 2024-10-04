@@ -1,0 +1,21 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.SanPham>
+@{
+    ViewBag.Title = "Sản phẩm theo tên danh mục";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+<h2 class="product-list">Sản phẩm theo danh mục: @ViewBag.MaDanhMuc</h2>
+<table class="product-list" style="width:1500px;margin:auto">
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td class="product">
+              
+                    <img src="@Url.Content(item.AnhSP1)" alt="@item.TenSanPham" style="width:100px;">
+                    <p>@item.TenSanPham</p>
+                    <p>@String.Format("{0:C}", item.GiaTien) VND</p>
+                    <button>@Html.ActionLink("Mua Ngay", "Details", new { id = item.MaSanPham })</button>
+              
+            </td>
+        }
+  </table>

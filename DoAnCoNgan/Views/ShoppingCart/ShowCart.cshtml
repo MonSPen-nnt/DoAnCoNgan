@@ -1,0 +1,203 @@
+﻿@model DoAnCoNgan.Models.Cart
+
+@{
+    ViewBag.Title = "ShowCart";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+<style>
+    body {
+        padding: 20px;
+        font-family: Arial, sans-serif;
+    }
+
+    .table {
+        width: 100%;
+        max-width: 1200px;
+        margin: 20px auto;
+        border-collapse: collapse;
+    }
+
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .table th {
+            background-color: #f4f4f4;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .table img {
+            display: block;
+            margin: auto;
+        }
+
+        .table .form-control {
+            width: 60px;
+        }
+
+    tfoot tr td {
+        font-weight: bold;
+        text-align: right;
+    }
+
+        tfoot tr td[colspan="4"] {
+            text-align: left;
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+        border: none;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        color: white;
+        border: none;
+    }
+
+    .btn-success {
+        background-color: #28a745;
+        color: white;
+        border: none;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+
+    .btn:hover {
+        opacity: 0.9;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: calc(100% - 20px);
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+</style>
+<body>
+    @if (Model != null && Model.Items.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Hình sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                    <th>Hành động</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    int total = item._quantity * (int)item._product.GiaTien.Value;
+                    <tr>
+                        <td>@Html.DisplayFor(model => item._product.TenSanPham)</td>
+                        <td><img src="@Url.Content(item._product.AnhSP1)" height="50" width="50" alt="Hình sản phẩm" /></td>
+                        <td>@item._product.GiaTien.Value.ToString("C")</td>
+                        <td>
+                            @using (Html.BeginForm("Update_Cart_Quantity", "ShoppingCart"))
+                            {
+                                <input type="hidden" name="ID_Prouct" value="@item._product.MaSanPham" />
+                                <input type="number" name="Quantity" value="@item._quantity" min="1" class="form-control" />
+                                <input type="submit" value="Cập nhật" class="btn btn-info btn-sm" />
+                            }
+                        </td>
+                        <td>@total.ToString("C")</td>
+                        <td>
+                            <a href="@Url.Action("RemoveCart", "ShoppingCart", new { id = item._product.MaSanPham })" class="btn btn-danger btn-sm">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4" class="text-right">Tổng tiền:</td>
+                    <td>@Model.Total_money().ToString("C")</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-right">Tổng số lượng:</td>
+                    <td>@Model.Total_quantity()</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td colspan="6">
+                        @using (Html.BeginForm("CheckOut", "ShoppingCart"))
+                        {
+                           
+                            <div class="form-group">
+                                <label for="AddressDelivery">Địa chỉ giao hàng:</label>
+                                <input type="text" id="AddressDelivery" name="AddresDelivery" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="NameNguoiNhan">Tên người nhận:</label>
+                                <input type="text" id="NameNguoiNhan" name="NameNguoiNhan" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="SDtNguoiNhan">SĐT người nhận:</label>
+                                <input type="number" id="SDtNguoiNhan" name="SDtNguoiNhan" class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Thanh toán" class="btn btn-success" />
+                                <a href="@Url.Action("Create", "Customer")" class="btn btn-primary">Đăng ký</a>
+                            </div>
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="@Url.Action("TrangChu", "SanPhams")" class="btn btn-primary">Tiếp tục mua hàng</a>
+                    </td>
+                </tr>
+            </tfoot>
+            
+        </table>
+    }
+    else
+    {
+        @Html.Partial("EmptyCart")
+        <table class="table">
+            <tr>
+                <td>
+                    <a href="@Url.Action("TrangChu", "SanPhams")" class="btn btn-primary">Tiếp tục mua hàng</a>
+                </td>
+            </tr>
+        </table>
+    }
+  
+</body>

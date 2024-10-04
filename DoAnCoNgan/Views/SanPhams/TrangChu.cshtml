@@ -1,0 +1,246 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.SanPham>
+
+@{
+    ViewBag.Title = "TrangChu";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+  
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foot Store</title>
+    <link rel="stylesheet" href="~/Scripts/Css/TrangChuStyle.css">
+</head>
+<body>
+    <table style=" width: 1500px; margin: auto;">
+        <section class="brands" style="height:200px">
+            <div class="brand">
+                <a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenDanhMuc = "ADIDAS" }, null)">
+                    <img src="~/images/ADIDAS.jpg" style="width:200px" alt="Adidas">
+                    <p style="text-decoration:none;color:black"> ADIDAS</p>
+                </a>
+            </div>
+            <div class="brand">
+                <a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenDanhMuc = "BALENCIAGA" }, null)">
+                    <img src="~/images/BALENCIAGA.jpg" style="width:200px" alt="Balenciaga">
+                    <p style="text-decoration:none;color:black">BALENCIAGA</p>
+                </a>
+            </div>
+            <div class="brand">
+                <a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenDanhMuc = "NIKE" }, null)">
+                    <img src="~/images/NIKE.jpg" style="width:200px" alt="Nike">
+                    <p style="text-decoration:none;color:black">NIKE</p>
+                </a>
+            </div>
+            <div class="brand">
+                <a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenDanhMuc = "MLB" }, null)">
+                    <img src="~/images/MLB.jpg" alt="MLB" style="width:200px">
+                    <p style="text-decoration:none;color:black">MLB</p>
+                </a>
+            </div>
+        </section>
+        <hr />
+        <section class="new-products">
+            <h2>Sản phẩm mới nhất</h2>
+
+            <table class="product-list">
+                <tr>
+                    @foreach (var product in Model.Where(sp => sp.NgayTao >= DateTime.Now.AddDays(-3)).Take(10).ToList())
+                    {
+
+                        <td class="product">
+                            <img src="@Url.Content(product.AnhSP1)" alt="Hình sản phẩm" style="width:100px;" />
+                            <p>@product.TenSanPham</p>
+
+                            <p>@product.GiaTien VND</p>
+                            <button> @Html.ActionLink("Mua Ngay", "Details", new { id = product.MaSanPham })</button>
+                        </td>
+                    }
+                </tr>
+            </table>
+        </section>
+        <hr />
+        <section class="featured-products">
+            <h2>Sản phẩm số lượng lớn</h2>
+
+            <table class="product-list">
+                <tr>
+                    @foreach (var item in Model.Where(n => n.Soluong > 20).Take(10).ToList())
+                    {
+
+                        <td class="product">
+
+                            <img src="@item.AnhSP1" alt="Jordan 1 Low GU" style="width:100px;">
+                            <p>@item.TenSanPham</p>
+                            <p>@item.GiaTien VND</p>
+                            <button> @Html.ActionLink("Mua Ngay", "Details", new { id = item.MaSanPham })</button>
+                        </td>
+
+                    }
+                </tr>
+            </table>
+        </section>
+
+    </table>
+    <button onclick="location.href='@Url.Action("UserDetails", "LoginUser")'" class="btn btn-primary">Chuyển đến User Details</button>
+
+</body>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: white;
+        padding: 10px 0;
+        border-bottom: 1px solid #e7e7e7;
+    }
+
+    .top-bar {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 20px;
+    }
+
+    .contact, .account-lang {
+        display: flex;
+        align-items: center;
+        float: right;
+    }
+
+        .contact p, .account-lang a {
+            text-decoration: none;
+            color: #333;
+        }
+
+    .logo-search {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        width: 100px;
+    }
+
+    .search-cart {
+        display: flex;
+        align-items: center;
+    }
+
+        .search-cart input {
+            padding: 5px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .search-cart .cart {
+            text-decoration: none;
+            color: #333;
+        }
+
+    nav {
+        background-color: #333;
+        padding: 10px 0;
+    }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+        }
+
+            nav ul li {
+                margin: 0 15px;
+            }
+
+                nav ul li a {
+                    text-decoration: none;
+                    color: white;
+                    font-weight: bold;
+                }
+
+    .featured-images {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+        .featured-images img {
+            width: 100%;
+            margin-right: 10px;
+        }
+
+    .side-images {
+        float: right;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .side-images img {
+            width: 300px;
+            margin-bottom: 10px;
+        }
+
+    .brands, .new-products, .featured-products {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .brands {
+        display: flex;
+        justify-content: space-between;
+    }
+    .brands p{
+     text-decoration:none
+    }
+
+        .brands .brand {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+            .brands .brand img {
+                width: 350px;
+            }
+
+    .product-list {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .product {
+        width: 23%;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+        .product img {
+            width: 100%;
+        }
+
+    footer {
+        background-color: #333;
+        color: white;
+        padding: 20px 0;
+    }
+
+    .footer-top {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 20px
+    }
+
+    .subscribe {
+        justify-content: space-between;
+        padding: 0 20px
+    }
+</style>
+

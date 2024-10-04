@@ -1,0 +1,42 @@
+﻿@model DoAnCoNgan.Models.DonHang
+
+@{
+    ViewBag.Title = "Xuất Hóa Đơn";
+    Layout = null;
+
+}
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+@if (Model != null)
+{
+   
+
+    <div class="container body-content">
+        <h2>Xuất Hóa Đơn</h2>
+        <h3>Thông tin hóa đơn</h3>
+        <p><strong>Tên người nhận:</strong> @Model.TenNguoiNhan</p>
+        <p><strong>Ngày đặt hàng:</strong> @Model.NgayDatHang</p>
+        <p><strong>tên người gửi:</strong> @Model.NguoiDung.TenNguoiDung</p>
+        <p><strong>Địa chỉ người nhận:</strong> @Model.DiaChiNguoiNhan</p>
+        <p><strong>Tổng SL:</strong> @Model.TongSL</p>
+        <p><strong>Ngày đặt hàng:</strong> @Model.TongSL</p>
+        <p><strong>Giảm giá:</strong> @Model.GiamGia</p>
+        <p><strong>Tổng tiền:</strong> @Model.TongTien</p>
+
+        <p><strong>Số lượng:</strong> @Model.TongSL</p>
+        <p><strong>Phí Vận Chuyển:</strong> @Model.PhiVanChuyen</p>
+        <p><strong>Tiền phải trả:</strong> @Model.TienPhaiTra</p>
+
+        <form action="@Url.Action("XuatHoaDon", "DonHangs")" method="post">
+            <input type="hidden" name="id" value="@Model.MaDonHang" />
+            <button type="submit" class="btn btn-primary">Xuất hóa đơn</button>
+        </form>
+    </div>
+}
+else
+{
+    <h2>Xuất Hóa Đơn</h2>
+
+    <p>Sản phẩm không tìm thấy.</p>
+}

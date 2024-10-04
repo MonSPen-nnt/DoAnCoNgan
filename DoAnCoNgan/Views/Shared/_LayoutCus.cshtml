@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Scripts/Css/TrangChuStyle.css">
+</head>
+<body>
+
+    <header style="width:1400px;margin:auto">
+        <div class="top-bar" style="display:flex;">
+            <div style="float:left">
+                <span class="contact" style="font-weight: bold">Zalo 0123244566</span>
+            </div>
+            <div class="account-lang" style="float:left">
+
+                <a style="padding-left:15px">
+                    @if (Session["Email"] == null)
+                    {
+                        @Html.ActionLink("Tài Khoản", "Index", "LoginUser")
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("UserDetails", "LoginUser")"><text>Hello</text> @Session["Email"]</a>
+                        <span style="padding-left:15px">@Html.ActionLink("Đăng Xuất", "LogOutUser", "LoginUser")</span>
+                    }
+                </a>
+
+                <div>
+                    <a href="@Url.Action("ShowCart", "ShoppingCart")"><img src="@Url.Content("~/images/cart.png")" id="cart" height="30" width="30" /></a>
+                    @Html.Action("BagCart", "ShoppingCart")
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="logo-search">
+            <a href="@Url.Action("TrangChu", "SanPhams")">
+                <img src="~/images/logo.png" alt="Foot Store Logo" class="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="@Url.Action("TrangChu", "SanPhams")">Trang chủ</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "ADIDAS" }, null)">Adidas</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "NIKE" }, null)">Nike</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "MLB" }, null)">MLB</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "CONVERSE" }, null)">Converse</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "PUMA" }, null)">Puma</a></li>
+                    <li><a href="@Url.Action("SanPhamTheoTenDanhMuc", "SanPhams", new { TenHang = "YEEZE" }, null)">Yeeze</a></li>
+                </ul>
+            </nav>
+            <div class="col-6 text-right">
+                <form method="GET" action="@Url.Action("Search", "SanPhams")" class="form-inline d-inline-block">
+                    <input type="text" class="form-control" id="searchTerm" name="searchTerm" placeholder="Tìm kiếm sản phẩm">
+                    <button class="btn btn-primary" id="searchButton" type="submit">
+                        <i class="fas fa-search"></i> Tìm kiếm
+                    </button>
+                </form>
+            </div>
+        </div>
+        <hr />
+
+    </header>
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <footer style=" width: 1500px; margin: auto;">
+        <div>
+            <p style="font-size: 20px; text-align: center;"> CẬP NHẬT SẢN PHẨM MỚI</p>
+        </div>
+        <div class="footer-top">
+            <div class="contact-info">
+                <p>Theo dõi thêm kênh Zalo: 0123244566</p>
+                <input type="text" placeholder="Nhập Mail Của Bạn">
+
+                <p style="font-weight:bold">Foot Store</p>
+                <p>Địa chỉ: 828 Sư Vạn Hạnh</p>
+                <p>Hotline: 0123244566 (Zalo - Tư vấn nhanh)</p>
+                <p>Thời gian làm việc: 8:00 - 18:00</p>
+                <p>DỊCH VỤ</p>
+                <p>LIÊN HỆ ĐỔI TRẢ HÀNG SỬ DỤNG ĐỒ TRANG BÁN HÀNG</p>
+            </div>
+
+
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Foot Store. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿@model DoAnCoNgan.Models.TaiKhoan
+
+@{
+    Layout = null;
+}
+<style>
+    body {
+        background-color: #f8f9fa;
+        font-family: Arial, sans-serif;
+    }
+
+    .login-container {
+        max-width: 600px;
+        margin: auto;
+        padding: 30px;
+        background: white;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-top: 50px;
+    }
+
+        .login-container h1 {
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #343a40;
+        }
+
+    .form-control {
+        margin-bottom: 15px;
+    }
+
+    .btn-primary, .btn-success, .btn-secondary {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .text-danger {
+        font-size: 0.9em;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .main {
+        width: 1000px;
+        margin: auto;
+    }
+
+    .dangky {
+        background-color: black;
+        color: white;
+        width: 150px;
+        height: 30px;
+    }
+
+    .DanhNhap {
+        margin-bottom: 15px;
+    }
+
+        .DanhNhap label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .DanhNhap input {
+            width: 1000px;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+
+        .buttons button {
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+        }
+
+    .lienhe {
+        width: 1000px;
+        margin: auto;
+    }
+
+        .lienhe a {
+            display: block;
+            margin-bottom: 5px;
+        }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập Tài Khoản</title>
+    <link rel="stylesheet" href="LoginStyle.css">
+</head>
+
+
+@using (Html.BeginForm("LoginAccount", "LoginUser"))
+{
+
+    <body>
+        <div class="main">
+            <h1>Đăng nhập Tài Khoản</h1>
+            <div>
+                <h2>Khách hàng đã có tài khoản</h2>
+                <form>
+                    <div class="DanhNhap">
+                        <label for="email">Địa Chỉ E-Mail:</label>
+                        @Html.TextBoxFor(model => model.Email, new { style = "field-validation-error" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
+                    <div class="DanhNhap">
+                        <label for="password">Mật Khẩu:</label>
+                        @Html.EditorFor(model => model.MatKhau)
+                        @Html.ValidationMessageFor(model => model.MatKhau)
+                        @if (ViewBag.ErrorInfo == null)
+                        {
+                            <p>@ViewBag.ErrorInfo</p>
+                        }
+                    </div>
+                    <a href="#">Quên mật khẩu</a>
+                    <div class="buttons">
+                        <button type="submit" class="button">Đăng nhập</button>
+
+                    </div>
+                </form>
+            </div>
+            <div>
+                <h2>Khách hàng chưa có tài khoản</h2>
+                <button class="dangky" onclick="location.href='@Url.Action("RegisterUser")'; return false;">Register</button>
+
+            </div>
+        </div>
+        <br />
+        <div class="lienhe">
+            <a href="tel:0936666937">Hotline: 0936666937</a>
+        </div>
+
+
+    </body>
+}

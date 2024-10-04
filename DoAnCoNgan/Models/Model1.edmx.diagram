@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4a4ab43d9a043d4b53c6427c6ce9f1b" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="DAWebBanGiayModel.BinhLuan" Width="1.5" PointX="8.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.CauHinh" Width="1.5" PointX="0.75" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.ChiTietDonHang" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.DanhMuc" Width="1.5" PointX="3.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.DonHang" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.MAU" Width="1.5" PointX="3.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.NguoiDung" Width="1.5" PointX="1.5" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.NguoiQuanTri" Width="1.5" PointX="3.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.SanPham" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DAWebBanGiayModel.TaiKhoan" Width="1.5" PointX="1.5" PointY="14.5" IsExpanded="true" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__BinhLuan__MaNguo__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__BinhLuan__MaSanP__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__ChiTietDo__TienT__5DCAEF64" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__SanPham__Thue__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__ChiTietDo__MaDon__5EBF139D" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__ChiTietDo__MaSan__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__SanPham__MaDanhM__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__DonHang__MaNguoi__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__SanPham__MauSac__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__NguoiDung__MaTai__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DAWebBanGiayModel.FK__NguoiQuan__MaTai__3D5E1FD2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

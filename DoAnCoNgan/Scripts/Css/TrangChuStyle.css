@@ -1,0 +1,152 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: white;
+    padding: 10px 0;
+    border-bottom: 1px solid #e7e7e7;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.contact, .account-lang {
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+    .contact p, .account-lang a {
+        text-decoration: none;
+        color: #333;
+    }
+
+.logo-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+}
+
+.search-cart {
+    display: flex;
+    align-items: center;
+}
+
+    .search-cart input {
+        padding: 5px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+
+    .search-cart .cart {
+        text-decoration: none;
+        color: #333;
+    }
+
+nav {
+    background-color: #333;
+    padding: 10px 0;
+}
+
+    nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+    }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+            nav ul li a {
+                text-decoration: none;
+                color: white;
+                font-weight: bold;
+            }
+
+.featured-images {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+    .featured-images img {
+        width: 100%;
+        margin-right: 10px;
+    }
+
+.side-images {
+    float: right;
+    display: flex;
+    flex-direction: column;
+}
+
+    .side-images img {
+        width: 300px;
+        margin-bottom: 10px;
+    }
+
+.brands, .new-products, .featured-products {
+    padding: 20px;
+    text-align: center;
+}
+
+.brands {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .brands .brand {
+        flex: 1;
+        padding: 0 10px;
+    }
+
+        .brands .brand img {
+            width: 350px;
+        }
+
+.product-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.product {
+    width: 23%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+    .product img {
+        width: 100%;
+    }
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+}
+
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px
+}
+
+.subscribe {
+    justify-content: space-between;
+    padding: 0 20px
+}

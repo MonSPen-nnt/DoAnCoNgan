@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.ChartViewModel>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Biểu đồ tổng số tiền theo ngày</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Biểu đồ tổng số tiền theo ngày</h1>
+    <canvas id="myChart" width="400" height="200"></canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('@Url.Action("ChartData", "DonHangs")')
+                .then(response => response.json())
+                .then(data => {
+                    const ctx = document.getElementById('myChart').getContext('2d');
+                    const chart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: data.map(item => item.Date),
+                            datasets: [{
+                                label: 'Tổng số tiền',
+                                data: data.map(item => item.TotalAmount),
+                                borderColor: 'rgba(75, 192, 192, 1)',
+                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    title: {
+                                        display: true,
+                                        text: 'Ngày'
+                                    }
+                                },
+                                y: {
+                                    title: {
+                                        display: true,
+                                        text: 'Tổng số tiền'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                })
+                .catch(error => console.error('Lỗi:', error));
+        });
+    </script>
+</body>
+</html>

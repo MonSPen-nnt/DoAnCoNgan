@@ -1,0 +1,36 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.DonHang>
+
+@{
+    ViewBag.Title = "Lịch sử đơn hàng";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+<h2>Lịch sử đơn hàng</h2>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Mã Đơn Hàng</th>
+            <th>Ngày Đặt</th>
+            <th>Tổng Tiền</th>
+            <th>Trạng Thái</th>
+            <th>Chi Tiết</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.MaDonHang</td>
+                <td>@item.NgayDatHang.ToShortDateString()</td>
+                <td>@item.TongTien</td>
+                <td>@item.TrangThai</td>
+               
+                <td>
+                    <!-- Nút để xuất hóa đơn -->
+                    @Html.ActionLink("Xuất hóa đơn", "XuatHoaDon", new { id = item.MaDonHang }, new { @class = "btn btn-primary" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

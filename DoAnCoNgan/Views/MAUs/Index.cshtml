@@ -1,0 +1,39 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.MAU>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENMAU)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RBG)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENMAU)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RBG)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAMAU }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAMAU }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAMAU })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,26 @@
+﻿@model DoAnCoNgan.Models.SanPham
+
+@{
+    ViewBag.Title = "Xuất Hóa Đơn";
+}
+
+<h2>Xuất Hóa Đơn</h2>
+
+@if (Model != null)
+{
+    <div>
+        <h3>Thông tin sản phẩm</h3>
+        <p><strong>Tên sản phẩm:</strong> @Model.TenSanPham</p>
+        <p><strong>Số lượng:</strong> @Model.Soluong</p>
+        <p><strong>Giá tiền:</strong> @Model.GiaTien</p>
+
+        <form action="@Url.Action("XuatHoaDon", "SanPhams")" method="post">
+            <input type="hidden" name="id" value="@Model.MaSanPham" />
+            <button type="submit" class="btn btn-primary">Xuất hóa đơn</button>
+        </form>
+    </div>
+}
+else
+{
+    <p>Sản phẩm không tìm thấy.</p>
+}

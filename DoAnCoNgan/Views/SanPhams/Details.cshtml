@@ -1,0 +1,312 @@
+﻿@model DoAnCoNgan.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutCus.cshtml";
+}
+
+
+<head>
+    <meta charset="utf-8" />
+    <title>ChiTietSanPham</title>
+    <link rel="stylesheet" href="~/Scripts/Css/ChiTietSanPhamStyle.css" />
+</head>
+<div class="SanPham">
+    <div>
+        <div class="AnhSP">
+            <img style="width:500px;height:500px;" src="@Model.AnhSP1" />
+        </div>
+
+        @*<table border="0" class="tableAnhSP">
+                <tr>
+                    <td>
+                        <button style="border-radius:5px;">
+                            <
+                        </button>
+                    </td>
+
+                    <td>
+                        <button style="border-radius:5px;">
+                            >
+                        </button>
+                    </td>
+                </tr>
+            </table>*@
+
+    </div>
+
+
+    <div class="MoTa">
+        <div class="TenSP">
+
+            <p>@Model.TenSanPham</p>
+        </div>
+
+        <div class="TextTuyChonDangCo">
+            <p>
+                Tùy chọn đang có
+
+            </p>
+        </div>
+        <div style="display:flex" class="KichThuoc">
+            <p style="color:red">
+                *
+            </p>
+            <p>
+                Kích Thước
+
+            </p>
+        </div>
+
+        <div class="Size">
+            <label>@Model.Size</label>
+           
+
+        </div>
+        <br />
+        <table class="SoLuongSP" border="0">
+            <tr>
+               
+                <td>@Model.Soluong</td>
+              
+            </tr>
+        </table>
+        <div class="ThemVaoGioHang">
+            <a href="/ShoppingCart/AddToCart/@Model.MaSanPham" class="btn btn-default"><input type="submit" value="Thêm Vào Giỏ Hàng" /></a>
+            @*<button class="NutThemVaoGioHang">Thêm Vào Giỏ Hàng</button>*@
+        </div>
+       
+    </div>
+</div>
+
+<div class="MoTaChiTiet">
+
+
+    <div class="MoTaDanhGia">
+        <h3>Bình luận</h3>
+        @foreach (var binhLuan in ViewBag.BinhLuans)
+        {
+            <div>
+                <strong>@binhLuan.NguoiDung.TenNguoiDung</strong>
+                <p>@binhLuan.NoiDung</p>
+                <small>@binhLuan.NgayBinhLuan.ToString("dd/MM/yyyy HH:mm:ss")</small>
+            </div>
+        }
+
+        <h4>Gửi Bình Luận</h4>
+        @using (Html.BeginForm("AddComment", "SanPhams", FormMethod.Post))
+        {
+            @Html.Hidden("MaSanPham", Model.MaSanPham)
+
+            <div>
+                <label for="NoiDung">Nội dung</label>
+                <textarea name="NoiDung" required></textarea>
+            </div>
+
+            <button type="submit">Gửi đánh giá</button>
+        }
+    </div>
+
+
+
+    <div class="TextMoTa">
+        <p>
+            * Loại: REP 1:1
+        </p>
+
+        <p>
+            -------------------
+        </p>
+        <p>
+            * Giao hàng Toàn Quốc - Nhận hàng và kiểm tra hàng trước khi thanh toán
+
+
+        </p>
+        <p>
+            _ Nội Thành HCM - Miễn phí vận chuyển & nhận hàng trong ngày
+        </p>
+        <p>
+            _ Ngoại Thành: Có tính phí vận chuyển & nhận hàng 2-4 ngày tùy khu vực
+        </p>
+        <p>
+            * Hỗ trợ đổi sản phẩm trong 5 ngày
+
+        </p>
+        <p>
+            * Bảo hành 6 tháng tất cả sản phẩm
+        </p>
+        <p>
+            ------------------------------
+
+        </p>
+        <p>
+            * Hotline tư vấn gấp: 0936666937 (Zalo)
+
+        </p>
+        <p>
+            * Tư vấn đặt hàng thêm tại Facebook, tìm shop với cú pháp #sotstore hoặc số điện thoại #0936666937
+
+        </p>
+    </div>
+
+</div>
+
+
+
+@*<p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.MaSanPham }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    .SanPham {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .AnhSP img {
+        border-radius: 8px;
+        margin-left: 150px;
+    }
+
+    .tableAnhSP {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .MoTa {
+        padding: 20px;
+        max-width: 600px;
+        margin-right: 100px;
+    }
+
+        .MoTa .TenSP p {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+    .TextTuyChonDangCo p,
+    .KichThuoc p {
+        margin: 5px 0;
+        font-weight: bold;
+    }
+
+    .Size label {
+        margin-right: 10px;
+        font-size: 14px;
+    }
+
+    .Size input[type="checkbox"] {
+        margin-right: 20px;
+    }
+
+    .SoLuongSP {
+        margin: 20px 0;
+        text-align: center;
+    }
+
+        .SoLuongSP button {
+            padding: 5px 10px;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+    .ThemVaoGioHang {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+    }
+
+        .ThemVaoGioHang a,
+        .ThemVaoGioHang button {
+            background-color: #28a745;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+    .ThemYeuThichSoSanh {
+        display: flex;
+        margin-top: 20px;
+    }
+
+        .ThemYeuThichSoSanh p {
+            cursor: pointer;
+            color: #007bff;
+        }
+
+    .MoTaChiTiet {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 20px auto;
+        width: 80%;
+        max-width: 1200px;
+    }
+
+    .MoTaDanhGia h3,
+    .MoTaDanhGia h4 {
+        margin-top: 0;
+    }
+
+    .MoTaDanhGia div {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+    }
+
+    .MoTaDanhGia strong {
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .MoTaDanhGia textarea {
+        width: 100%;
+        height: 100px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+
+    .MoTaDanhGia button {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .TextMoTa p {
+        margin: 5px 0;
+        line-height: 1.6;
+    }
+
+        .TextMoTa p:first-child {
+            font-weight: bold;
+        }
+
+</style>

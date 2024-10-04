@@ -1,0 +1,184 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.DonHang>
+
+@{
+ 
+}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+
+<body>
+   
+
+    <div style="margin:auto;width:1200px">
+        <div class="filter-form">
+            @using (Html.BeginForm("Index", "DonHangs", FormMethod.Get))
+            {
+                <label for="startDate">Từ ngày:</label>
+                <input type="date" id="startDate" name="startDate" />
+                <label for="endDate">Đến ngày:</label>
+                <input type="date" id="endDate" name="endDate" />
+                <input type="submit" value="Lọc" />
+            }
+        </div>
+        <h1> Danh Sách Đơn Hàng</h1>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    Ngày đặt hàng
+                </th>
+                <th>
+                    Trạng Thái
+                </th>
+                <th>
+                    Phí Vận Chuyển
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th>
+                    Số điện thoại người nhận
+                </th>
+                <th>
+                    Địa chỉ người nhận
+                </th>
+                <th>
+                    Tên người nhận
+                </th>
+                <th>
+                    Tổng số lượng
+                </th>
+                <th>
+                    Tổng tiền
+                </th>
+                <th>
+                    Giảm giá
+                </th>
+                <th>
+                    Tiền phải trả
+                </th>
+                <th>
+                    Tên tài khoản
+                </th>
+                <th> Cài đặt trạng thái</th>
+                <th>Xuất hóa đơn</th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NgayDatHang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TrangThai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhiVanChuyen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SDTNguoiNhan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DiaChiNguoiNhan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TenNguoiNhan)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongSL)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TongSoTien)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GiamGia)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TienPhaiTra)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NguoiDung.TenNguoiDung)
+                    </td>
+                    @*<td>
+            @using (Html.BeginForm("UpdateTrangThai", "DonHangs", FormMethod.Post))
+            {
+                @Html.DisplayFor(modelItem => item.MaDonHang)
+                <button type="submit" class="btn btn-success">Xác nhận giao hàng</button>
+            }
+        </td>*@
+                    <td>
+                        @Html.ActionLink("Chi tiết", "ChiTiet", new { id = item.MaDonHang }, new { @class = "btn btn-info" })
+                    </td>
+                    <td style="display:flex;">
+                        <button>
+
+                            @Html.ActionLink("Đã Giao", "UpdateTrangThai", new { id = item.MaDonHang }, new { @class = "btn btn-primary" })
+
+                        </button>
+
+                        <button>
+                            @Html.ActionLink("Chưa Giao", "UpdateTrangThai_ChuaGiao", new { id = item.MaDonHang }, new { @class = "btn bt" })
+                        </button>
+
+                        <button>
+                            @Html.ActionLink("Hủy Đơn", "UpdateTrangThai_HuyDon", new { id = item.MaDonHang }, new { @class = "btn btn-primary" })
+                        </button>
+                    </td>
+                    <td>
+                        <!-- Nút để xuất hóa đơn -->
+                        @Html.ActionLink("Xuất hóa đơn", "XuatHoaDon", new { id = item.MaDonHang }, new { @class = "btn btn-primary" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.MaDonHang }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.MaDonHang }) |
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.MaDonHang })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>

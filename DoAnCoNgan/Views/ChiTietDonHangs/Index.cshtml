@@ -1,0 +1,90 @@
+﻿@model IEnumerable<DoAnCoNgan.Models.ChiTietDonHang>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SanPham.MaSanPham)
+            </th><th>
+                @Html.DisplayNameFor(model => model.DonHang.MaDonHang)
+            </th><th>
+                @Html.DisplayNameFor(model => model.Soluong)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonGia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TieuGiam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TongTien)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CauHinh.TenCauHinh)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DonHang.TrangThai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SanPham.TenSanPham)
+            </th> <th>
+                @Html.DisplayNameFor(model => model.SanPham.AnhSP1)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.MaSanPham)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.MaDonHang)
+            </td> <td>
+                @Html.DisplayFor(modelItem => item.Soluong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonGia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TieuGiam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TongTien)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CauHinh.TenCauHinh)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DonHang.TrangThai)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SanPham.TenSanPham)
+            </td> <td>
+              <img src="@item.SanPham.AnhSP1" width="100"/>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
